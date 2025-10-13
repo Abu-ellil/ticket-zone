@@ -2,9 +2,11 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Tajawal } from 'next/font/google';
 import { TicketProvider } from '../contexts/TicketContext';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-const tajawal = Tajawal({ 
-  subsets: ['arabic'], 
+const tajawal = Tajawal({
+  subsets: ['arabic'],
   weight: ['400', '500', '700'],
   display: 'swap'
 });
@@ -24,7 +26,11 @@ export default function RootLayout({
       <body className={tajawal.className}>
         <TicketProvider>
           <div className="flex flex-col min-h-screen bg-white text-gray-800">
-            {children}
+            <Header />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
           </div>
         </TicketProvider>
       </body>

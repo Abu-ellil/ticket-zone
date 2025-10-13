@@ -1,6 +1,8 @@
 
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { CloseIcon, Logo, FacebookIcon, InstagramIcon, LinkedInIcon, YoutubeIcon } from './Icons';
 
 interface MobileNavProps {
@@ -9,8 +11,8 @@ interface MobileNavProps {
 }
 
 const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
-  const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
-    <Link to={to} onClick={onClose} className="block py-3 text-2xl text-white hover:text-brand-gold transition-colors duration-300">
+  const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+    <Link href={href} onClick={onClose} className="block py-3 text-2xl text-white hover:text-brand-gold transition-colors duration-300">
       {children}
     </Link>
   );
@@ -21,7 +23,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
-      <div className="container mx-auto px-4 h-full flex flex-col">
+      <div className="container mx-auto px-4 h-full flex-col">
         <div className="flex items-center justify-between h-16">
           <button onClick={onClose} className="text-white">
             <CloseIcon />
@@ -31,15 +33,15 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
         </div>
         
         <div className="flex-grow flex flex-col justify-center items-center text-center -mt-16">
-            <Link to="#" onClick={onClose} className="bg-brand-gold text-brand-green font-bold py-3 px-12 rounded-full text-lg mb-8 hover:bg-yellow-300 transition-colors">
+            <Link href="#" onClick={onClose} className="bg-brand-gold text-brand-green font-bold py-3 px-12 rounded-full text-lg mb-8 hover:bg-yellow-300 transition-colors">
             تسجيل الدخول
             </Link>
             <nav className="space-y-4">
-                <NavLink to="/about">عن تكت زون</NavLink>
-                <NavLink to="/events">حفلات</NavLink>
-                <NavLink to="/legends">مباريات</NavLink>
-                <NavLink to="/terms">شروط الاستخدام</NavLink>
-                <NavLink to="/privacy">سياسة الخصوصية</NavLink>
+                <NavLink href="/about">عن تكت زون</NavLink>
+                <NavLink href="/events">حفلات</NavLink>
+                <NavLink href="/legends">مباريات</NavLink>
+                <NavLink href="/terms">شروط الاستخدام</NavLink>
+                <NavLink href="/privacy">سياسة الخصوصية</NavLink>
             </nav>
         </div>
         

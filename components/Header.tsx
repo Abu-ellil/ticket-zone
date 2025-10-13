@@ -1,6 +1,8 @@
 
+'use client';
+
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import MobileNav from './MobileNav';
 import { MenuIcon, Logo } from './Icons';
 
@@ -14,7 +16,7 @@ const Header: React.FC = () => {
           <button onClick={() => setIsNavOpen(true)} className="text-white">
             <MenuIcon />
           </button>
-          <Link to="/" className="text-white">
+          <Link href="/" className="text-white">
             <Logo />
           </Link>
           <div className="w-8"></div>

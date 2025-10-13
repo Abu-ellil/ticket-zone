@@ -1,6 +1,8 @@
 
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Logo, StarIcon, SearchIcon, FacebookIcon, InstagramIcon, LinkedInIcon } from './Icons';
 
 
@@ -21,8 +23,8 @@ const Footer: React.FC = () => {
         <div className="border-t border-white/20 mb-6"></div>
         <div className="space-y-2 text-sm">
             <div className="flex flex-col sm:flex-row justify-center sm:space-i-6">
-                <Link to="/privacy" className="hover:text-brand-gold">سياسة الخصوصية</Link>
-                <Link to="/terms" className="hover:text-brand-gold">شروط الاستخدام</Link>
+                <Link href="/privacy" className="hover:text-brand-gold">سياسة الخصوصية</Link>
+                <Link href="/terms" className="hover:text-brand-gold">شروط الاستخدام</Link>
             </div>
             <p>رقم مركز خدمة الزبائن: <a href="tel:9647873344009" className="hover:text-brand-gold">9647873344009</a></p>
             <p>البريد الالكتروني: <a href="mailto:info@digitalzone.app" className="hover:text-brand-gold">info@digitalzone.app</a></p>
@@ -39,7 +41,7 @@ const Footer: React.FC = () => {
         </p>
       </div>
     </footer>
-  );
+ );
 };
 
 export default Footer;
