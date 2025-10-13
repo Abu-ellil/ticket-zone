@@ -1,0 +1,5 @@
+{
+  "name": "Ticket Zone",
+  "description": "An event ticketing platform, allowing users to browse events, select seats from an interactive map, and purchase tickets. Inspired by the Ticket Zone UI.",
+  "requestFramePermissions": []
+}
