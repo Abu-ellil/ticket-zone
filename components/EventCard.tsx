@@ -1,6 +1,7 @@
+'use client';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Event } from '../types';
 import { LocationIcon, CalendarIcon } from './Icons';
 
@@ -12,7 +13,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const isSoldOut = event.tags?.includes('Sold Out');
 
   return (
-    <Link to={`/event/${event.id}`} className="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <Link href={`/event/${event.id}`} className="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
       <div className="relative">
         <img src={event.imageUrl} alt={event.title} className="w-full h-48 object-cover" />
         {event.tags && (
@@ -37,7 +38,6 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
             <LocationIcon className="w-4 h-4 text-gray-400 mt-1 me-2 flex-shrink-0" />
             <span>{event.location} - {event.venue}</span>
           </div>
-        </div>
         {event.priceFrom && (
           <div className="mt-4 text-left">
             <span className="text-sm text-gray-500">تبدأ من</span>
