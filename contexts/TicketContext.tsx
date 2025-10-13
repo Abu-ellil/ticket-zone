@@ -1,4 +1,6 @@
 
+'use client';
+
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { Ticket } from '../types';
 
@@ -15,7 +17,7 @@ const TicketContext = createContext<TicketContextType | undefined>(undefined);
 export const TicketProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
 
-  const addTicket = (ticket: Ticket) => {
+ const addTicket = (ticket: Ticket) => {
     setTickets((prevTickets) => [...prevTickets, ticket]);
   };
 
@@ -41,5 +43,5 @@ export const useTickets = (): TicketContextType => {
   if (context === undefined) {
     throw new Error('useTickets must be used within a TicketProvider');
   }
-  return context;
+ return context;
 };
