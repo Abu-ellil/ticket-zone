@@ -1,11 +1,18 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { MOCK_EVENTS } from '../../../../constants';
+import { MOCK_EVENTS } from '../../../constants';
 import { useState } from 'react';
 import SeatMap from '../../../components/SeatMap';
-import { useTickets } from '../../../../contexts/TicketContext';
-import { MOCK_VENUE_LAYOUT } from '../../../../constants';
+import { useTickets } from '../../../contexts/TicketContext';
+import { MOCK_VENUE_LAYOUT } from '../../../constants';
+import { Seat } from '../../../types';
+
+export function generateStaticParams() {
+  return MOCK_EVENTS.map((event) => ({
+    id: event.id.toString(),
+  }));
+}
 
 export default function EventDetailPage() {
   const params = useParams();
@@ -19,7 +26,7 @@ export default function EventDetailPage() {
     return <div className="container mx-auto px-4 py-8">Event not found</div>;
   }
 
-  const handleSeatSelect = (seat: { id: string; price: number }) => {
+  const handleSeatSelect = (seat: Seat) => {
     if (selectedSeatIds.includes(seat.id)) {
       // Remove seat
       setSelectedSeatIds(selectedSeatIds.filter(id => id !== seat.id));
@@ -27,7 +34,7 @@ export default function EventDetailPage() {
     } else {
       // Add seat
       setSelectedSeatIds([...selectedSeatIds, seat.id]);
-      addTicket({ seatId: seat.id, eventId: event.id.toString(), price: seat.price, category: 'Seat' });
+      addTicket({ seatId: seat.id, label: seat.label, price: seat.price, category: seat.category });
     }
   };
 
