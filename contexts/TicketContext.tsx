@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { createContext, useState, useContext, ReactNode } from 'react';
@@ -8,7 +7,7 @@ interface TicketContextType {
   tickets: Ticket[];
   addTicket: (ticket: Ticket) => void;
   removeTicket: (seatId: string) => void;
-  clearTickets: () => void;
+ clearTickets: () => void;
   totalPrice: number;
 }
 
@@ -40,7 +39,7 @@ export const TicketProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
 export const useTickets = (): TicketContextType => {
   const context = useContext(TicketContext);
-  if (context === undefined) {
+ if (context === undefined) {
     throw new Error('useTickets must be used within a TicketProvider');
   }
  return context;

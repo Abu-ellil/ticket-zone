@@ -1,7 +1,5 @@
-
 import React from 'react';
 import { VenueLayout, Seat } from '../types';
-import { useTickets } from '../contexts/TicketContext';
 
 interface SeatMapProps {
   layout: VenueLayout;
@@ -23,63 +21,62 @@ const SeatMap: React.FC<SeatMapProps> = ({ layout, selectedSeatIds, onSeatSelect
 
   const getSeatColor = (seat: Seat) => {
     if (seat.status === 'taken') return 'bg-gray-400 cursor-not-allowed';
-    if (selectedSeatIds.includes(seat.id)) return 'bg-[#005950]';
-    return 'bg-white border border-gray-300 hover:bg-gray-100';
+    if (selectedSeatIds.includes(seat.id)) return 'bg-[#006e5f]';
+    return 'bg-gray-300 hover:bg-gray-400';
   };
   
   return (
-    <div className="bg-white p-4 rounded-lg overflow-x-auto">
+    <div className="bg-white p-4 rounded-lg overflow-x-auto shadow-md">
         <div className="w-full flex flex-col items-center space-y-6">
-            <div className="bg-gray-300 w-1/2 h-8 rounded-b-full flex items-center justify-center text-sm text-gray-600 font-semibold">
+            <div className="bg-gray-200 w-1/2 h-8 rounded-b-full flex items-center justify-center text-sm text-gray-600 font-semibold">
                 المسرح
             </div>
             
-            <div className="w-full max-w-md">
-                {/* Silver Section */}
-                <div className="mb-8">
-                    <h4 className="text-center font-bold mb-2 text-gray-500">Silver</h4>
-                    <div className="bg-gray-200 h-16 rounded-t-full flex items-center justify-center">
+            <div className="w-full flex justify-center">
+                <div className="bg-gray-200 rounded-full px-8 py-2 text-center text-gray-600 font-semibold">
+                    Silver
+                </div>
+            </div>
+            
+            <div className="w-full flex justify-center">
+                <div className="bg-gray-200 rounded-full px-8 py-2 text-center text-gray-600 font-semibold">
+                    VIP
+                </div>
+            </div>
+            
+            <div className="flex justify-center w-full">
+                <div className="grid grid-cols-3 gap-4 w-full max-w-md">
+                    <div className="text-center">
+                        <div className="bg-gray-200 rounded-lg p-2 mb-2">Platform I</div>
+                    </div>
+                    <div className="text-center">
+                        <div className="bg-gray-200 rounded-lg p-2 mb-2">VIP</div>
+                    </div>
+                    <div className="text-center">
+                        <div className="bg-gray-200 rounded-lg p-2 mb-2">Platform II</div>
                     </div>
                 </div>
-                
-                {/* VIP Section */}
-                <div className="mb-8">
-                    <div className="flex justify-between items-center mb-2">
-                        <div className="w-1/3 h-px bg-gray-300"></div>
-                        <h4 className="text-center font-bold text-gray-500">VIP</h4>
-                        <div className="w-1/3 h-px bg-gray-300"></div>
-                    </div>
-                    <div className="bg-gray-100 h-12 rounded-lg flex items-center justify-center">
-                    </div>
-                </div>
-                
-                {/* Platform Sections */}
-                <div className="flex justify-between mb-8">
-                    <div className="w-[45%]">
-                        <h4 className="text-center font-bold mb-2 text-gray-500">Platform I</h4>
-                        <div className="bg-gray-200 h-16 rounded-lg"></div>
-                    </div>
-                    <div className="w-[45%]">
-                        <h4 className="text-center font-bold mb-2 text-gray-500">Platform II</h4>
-                        <div className="bg-gray-200 h-16 rounded-lg"></div>
-                    </div>
-                </div>
-                
-                {/* Stage */}
-                <div className="flex justify-center items-center mb-4">
-                    <div className="w-1/3 h-px bg-gray-300"></div>
-                    <div className="mx-4 bg-gray-200 px-6 py-2 rounded-lg text-sm text-gray-600 font-semibold">
+            </div>
+            
+            <div className="w-full flex justify-center mt-8">
+                <div className="flex items-center space-x-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                    <div className="bg-gray-200 rounded-lg px-4 py-2">
                         المسرح
                     </div>
-                    <div className="w-1/3 h-px bg-gray-300"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                    </svg>
                 </div>
             </div>
             
             <div className="flex justify-center space-x-4 pt-4 text-xs">
-                <div className="flex items-center"><span className="w-4 h-4 bg-white border border-gray-300 rounded-full ml-2"></span> متاح</div>
-                <div className="flex items-center"><span className="w-4 h-4 bg-[#005950] rounded-full ml-2"></span> مختار</div>
-                <div className="flex items-center"><span className="w-4 h-4 bg-gray-400 rounded-full ml-2"></span> محجوز</div>
-            </div>
+                 <div className="flex items-center"><span className="w-4 h-4 bg-gray-300 rounded-full me-2"></span> متاح</div>
+                 <div className="flex items-center"><span className="w-4 h-4 bg-[#006e5f] rounded-full me-2"></span> مختار</div>
+                 <div className="flex items-center"><span className="w-4 h-4 bg-gray-400 rounded-full me-2"></span> محجوز</div>
+             </div>
         </div>
     </div>
   );

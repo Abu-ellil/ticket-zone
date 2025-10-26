@@ -1,18 +1,6 @@
+
 import './globals.css';
-import type { Metadata } from 'next';
-import { Tajawal } from 'next/font/google';
-import LayoutClient from './layout-client';
-
-const tajawal = Tajawal({
-  subsets: ['arabic'],
-  weight: ['400', '500', '700'],
-  display: 'swap'
-});
-
-export const metadata: Metadata = {
-  title: 'Ticket Zone',
-  description: 'Buy tickets for events easily',
-};
+import { TicketProvider } from '@/contexts/TicketContext';
 
 export default function RootLayout({
   children,
@@ -20,9 +8,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ar" dir="rtl">
-      <body className={tajawal.className}>
-        <LayoutClient>{children}</LayoutClient>
+    <html lang="en">
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+      </head>
+      <body className="min-h-screen flex-col">
+        <TicketProvider>
+          <div className="flex flex-col min-h-screen">
+            {children}
+          </div>
+        </TicketProvider>
       </body>
     </html>
   );

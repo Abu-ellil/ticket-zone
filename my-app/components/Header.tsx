@@ -5,7 +5,11 @@ import Link from 'next/link';
 import MobileNav from './MobileNav';
 import { MenuIcon } from './Icons';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  hideHero?: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ hideHero }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
@@ -23,11 +27,13 @@ const Header: React.FC = () => {
       </header>
 
       {/* Hero title under the top bar */}
-      <section className="bg-[#006e5f]">
-        <div className="container mx-auto px-4 py-6">
-          <h1 className="text-white text-2xl md:text-3xl font-bold text-center">تذكرتك صارت سهلة!</h1>
-        </div>
-      </section>
+      {!hideHero && (
+        <section className="bg-[#006e5f]">
+          <div className="container mx-auto px-4 py-6">
+            <h1 className="text-white text-2xl md:text-3xl font-bold text-center">تذكرتك صارت سهلة!</h1>
+          </div>
+        </section>
+      )}
 
       <MobileNav isOpen={isNavOpen} onClose={() => setIsNavOpen(false)} />
     </>

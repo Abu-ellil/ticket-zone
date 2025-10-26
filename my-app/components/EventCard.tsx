@@ -13,7 +13,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const isSoldOut = event.tags?.includes('Sold Out');
 
   return (
-    <Link href={`/event/${event.id}`} className="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 mb-4">
+    <Link href={`/event/${event._id}`} className="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 mb-4">
       <div className="relative">
         <img src={event.imageUrl} alt={event.title} className="w-full h-48 object-cover" />
         {event.tags && (
@@ -37,17 +37,23 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         <div className="mt-4 text-sm space-y-2">
           <div className="flex items-start">
             <CalendarIcon className="w-4 h-4 text-gray-400 mt-1 me-2 flex-shrink-0" />
-            <span>{event.date} - {event.time}</span>
+            <span>{event.date} - {event.time.eventStartTime}</span>
           </div>
           <div className="flex items-start">
             <LocationIcon className="w-4 h-4 text-gray-400 mt-1 me-2 flex-shrink-0" />
             <span>{event.location} - {event.venue}</span>
           </div>
         </div>
-        {event.priceFrom && (
+        {event.tickets && event.tickets.length > 0 ? (
           <div className="mt-4 text-left">
             <span className="text-sm text-gray-500">تبدأ من</span>
-            <p className="text-lg font-bold text-[#006e5f]">د.ع {event.priceFrom.toLocaleString()}</p>
+            <p className="text-lg font-bold text-[#006e5f]">
+              د.ع {Math.min(...event.tickets.map(ticket => ticket.price)).toLocaleString()}
+            </p>
+          </div>
+        ) : (
+          <div className="mt-4 text-left">
+            <p className="text-lg font-bold text-gray-500">لا توجد تذاكر متاحة</p>
           </div>
         )}
       </div>

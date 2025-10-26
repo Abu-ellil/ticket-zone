@@ -1,13 +1,22 @@
 export interface Event {
-  id: number;
-  title: string;
+  _id: string;
+ title: string;
   artist: string;
   date: string;
-  time: string;
-  location: string;
+  time: {
+    eventStartTime: string;
+    doorsOpenTime: string;
+  };
+ location: string; // Plain string as stored in the database
   venue: string;
   imageUrl: string;
   priceFrom?: number;
+  tickets: TicketDetails[];
+  currency: string;
+  contactInfo?: {
+    customerServiceNumber?: string;
+    email?: string;
+  };
   tags?: string[];
 }
 
@@ -47,4 +56,30 @@ export interface Legend {
     imageUrl: string;
     stats: { label: string; value: string | number }[];
     bio: string;
+}
+
+export interface TicketDetails {
+  type: string;
+  price: number;
+  currency: string;
+  discount?: string;
+}
+
+export interface EventDetailsSchema {
+  eventName: string;
+  date: string;
+ time: {
+    eventStartTime: string;
+    doorsOpenTime: string;
+  };
+  location: {
+    venue: string;
+  };
+  tickets: TicketDetails[];
+  currency: string;
+  contactInfo?: {
+    customerServiceNumber?: string;
+    email?: string;
+  };
+  imageUrl?: string; // Optional image URL for the event
 }

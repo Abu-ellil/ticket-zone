@@ -16,8 +16,14 @@ const EventSchema = new mongoose.Schema({
     required: [true, 'Please provide a date for this event.'],
   },
   time: {
-    type: String,
-    required: [true, 'Please provide a time for this event.'],
+    eventStartTime: {
+      type: String,
+      required: [true, 'Please provide an event start time for this event.'],
+    },
+    doorsOpenTime: {
+      type: String,
+      required: [true, 'Please provide a doors open time for this event.'],
+    },
   },
   location: {
     type: String,
@@ -34,9 +40,37 @@ const EventSchema = new mongoose.Schema({
   priceFrom: {
     type: Number,
   },
+  tickets: [
+    {
+      type: {
+        type: String,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+      discount: {
+        type: String,
+      },
+    },
+  ],
   tags: {
     type: [String],
   },
+  currency: {
+    type: String,
+    default: 'SAR', // Default to SAR as used in the frontend
+  },
+  contactInfo: {
+    customerServiceNumber: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+  },
 });
 
-export default mongoose.models.Event || mongoose.model('Event', EventSchema);
+const Event = mongoose.models.Event || mongoose.model('Event', EventSchema);
+export default Event;

@@ -77,14 +77,14 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
         </Link>
       </div>
       
-      <div className="py-8">
+      {/* <div className="py-8">
         <div className="flex justify-center space-i-6">
           <a href="#" className="text-white hover:text-brand-gold"><FacebookIcon /></a>
           <a href="#" className="text-white hover:text-brand-gold"><LinkedInIcon /></a>
           <a href="#" className="text-white hover:text-brand-gold"><YoutubeIcon /></a>
           <a href="#" className="text-white hover:text-brand-gold"><InstagramIcon /></a>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
